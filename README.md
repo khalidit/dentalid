@@ -4,14 +4,14 @@ Site vitrine moderne pour le cabinet dentaire à Champs‑sur‑Marne. Le projet
 
 ## Démarrage rapide
 
-Pré‑requis : Node.js (LTS recommandé) et npm.
+Pré‑requis : Node.js 20.19+ ou 22.12+ et npm.
 
 ```sh
 npm install
 npm run dev
 ```
 
-Le site est ensuite доступible sur l’URL affichée par Vite.
+Le site est ensuite accessible sur l’URL affichée par Vite.
 
 ## Scripts utiles
 
