@@ -32,7 +32,7 @@ const Index = () => {
   const [isHoursOpen, setIsHoursOpen] = useState(false);
   const currentYear = new Date().getFullYear();
   const bookingUrl =
-    "https://www.doctolib.fr/dentiste/champs-sur-marne/hauda-marzak";
+    "https://www.doctolib.fr/dentiste/champs-sur-marne/hauda-marzak/booking/motive-categories?specialityId=1&telehealth=false&placeId=practice-118496&profile_skipped=true&bookingFunnelSource=external_referral";
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -67,69 +67,82 @@ const Index = () => {
     {
       icon: <Stethoscope className="w-7 h-7 text-emerald-600" />,
       title: "Soins Conservateurs",
+      image: "/images/services/soins-conservateurs.jpg",
       description:
         "Caries, détartrage, soins de routine pour préserver vos dents naturelles",
     },
     {
       icon: <Shield className="w-7 h-7 text-emerald-600" />,
       title: "Prothèses Dentaires",
+      image: "/images/services/protheses-dentaires.jpg",
       description: "Couronnes, bridges, dentiers fixes ou amovibles sur mesure",
     },
     {
       icon: <Heart className="w-7 h-7 text-emerald-600" />,
       title: "Implants Dentaires",
+      image: "/images/services/implants-dentaires.jpg",
       description: "Solutions durables et esthétiques, implantologie avancée",
     },
     {
       icon: <Zap className="w-7 h-7 text-emerald-600" />,
       title: "Orthodontie",
+      image: "/images/services/orthodontie.jpg",
       description: "Alignement et correction dentaire, gouttières dentaires",
     },
     {
       icon: <AlertTriangle className="w-7 h-7 text-emerald-600" />,
       title: "Urgences Dentaires",
+      image: "/images/services/urgences-dentaires.jpg",
       description:
         "Prise en charge rapide des urgences et extractions dentaires",
     },
     {
       icon: <Sparkles className="w-7 h-7 text-emerald-600" />,
       title: "Blanchiment des dents",
+      image: "/images/services/blanchiment.jpg",
       description: "Éclaircissement dentaire pour un sourire éclatant",
     },
     {
       icon: <ShieldCheck className="w-7 h-7 text-emerald-600" />,
       title: "Bruxisme",
+      image: "/images/services/bruxisme.jpg",
       description:
         "Traitement du grincement de dents, gouttières de protection",
     },
     {
       icon: <Activity className="w-7 h-7 text-emerald-600" />,
       title: "Endodontie",
+      image: "/images/services/endodontie.jpg",
       description: "Traitement des canaux radiculaires, dévitalisation",
     },
     {
       icon: <Layers className="w-7 h-7 text-emerald-600" />,
       title: "Facettes Dentaires",
+      image: "/images/services/facettes.jpg",
       description: "Facettes esthétiques pour corriger forme et couleur",
     },
     {
       icon: <Settings className="w-7 h-7 text-emerald-600" />,
       title: "Prothèses sur Implant",
+      image: "/images/services/protheses-sur-implant.jpg",
       description: "Prothèses fixes stabilisées sur implants dentaires",
     },
     {
       icon: <Baby className="w-7 h-7 text-emerald-600" />,
       title: "Pédodontie",
+      image: "/images/services/pedodontie.jpg",
       description: "Soins dentaires spécialisés pour enfants et adolescents",
     },
     {
       icon: <Radio className="w-7 h-7 text-emerald-600" />,
       title: "Imagerie Dentaire",
+      image: "/images/services/imagerie-dentaire.jpg",
       description: "Radio panoramique, Cône beam 3D pour diagnostic précis",
     },
     {
       icon: <Scan className="w-7 h-7 text-emerald-600" />,
       title: "Stellite Dentaire",
+      image: "/images/services/stellite.jpg",
       description: "Prothèses partielles en alliage métallique léger",
     },
   ];
@@ -391,7 +404,7 @@ const Index = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent" />
               </div>
-              <div className="absolute top-6 right-6 rounded-full bg-white/90 px-4 py-2 text-m font-semibold text-emerald-900 shadow-lg">
+              <div className="absolute top-6 right-6 rounded-full bg-white/90 px-4 py-2 text-md font-semibold text-emerald-700 shadow-lg">
                 Nouveaux patients bienvenus
               </div>
               <button
@@ -441,10 +454,18 @@ const Index = () => {
                 className="group relative overflow-hidden rounded-2xl border border-emerald-100/60 bg-white/80 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500 via-sky-500 to-emerald-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <CardContent className="p-6 text-left">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50">
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white/90 shadow">
                     {service.icon}
                   </div>
+                </div>
+                <CardContent className="p-6 text-left">
                   <h3 className="text-xl font-semibold text-slate-900 mb-3">
                     {service.title}
                   </h3>

@@ -53,7 +53,7 @@ export function CabinetCarousel() {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold text-slate-900 mb-3 sm:mb-4">
             Découvrez notre cabinet
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-6">
             Un environnement moderne et professionnel pour votre bien-être dentaire
           </p>
         </div>
@@ -117,15 +117,6 @@ export function CabinetCarousel() {
                 <span>{index + 1}</span>
               </button>
             ))}
-          </div>
-          <div className="flex flex-col items-center mt-4">
-            <p className="text-center text-sm text-slate-500 mt-2">
-              {current} / {count}
-            </p>
-          </div>
-         {/* Informations de navigation pour mobile */}
-          <div className="sm:hidden text-center mt-8 text-sm text-slate-600">
-            <p>Balayez horizontalement pour naviguer</p>
           </div>
     </section>
   );
