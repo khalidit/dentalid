@@ -44,18 +44,17 @@ export function CabinetCarousel() {
 
   return (
     <section
-      className="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-blue-50 to-white "
+      className="py-10 sm:py-14 lg:py-20 bg-gradient-to-br from-emerald-50 via-white to-sky-50"
       id="cabinet"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-2">
         {/* En-tête avec animation */}
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-900 mb-3 sm:mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold text-slate-900 mb-3 sm:mb-4">
             Découvrez notre cabinet
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
-            Un environnement moderne et professionnel pour votre bien-être
-            dentaire
+          <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl mx-auto">
+            Un environnement moderne et professionnel pour votre bien-être dentaire
           </p>
         </div>
 
@@ -73,7 +72,7 @@ export function CabinetCarousel() {
             <CarouselContent>
               {cabinetImages.map((image, index) => (
                 <CarouselItem key={index} className="basis-full">
-                  <div className="md:h-[476px] rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                  <div className="relative md:h-[476px] rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
                     {/* Image avec effet parallax */}
                     <img
                       src={image.src}
@@ -108,10 +107,10 @@ export function CabinetCarousel() {
             {cabinetImages.map((_, index) => (
               <button
                 onClick={() => api?.scrollTo(index)}
-                className={`w-6 h-6 bg-blue-600 rounded-full text-sm ${
+                className={`w-6 h-6 bg-emerald-600 rounded-full text-sm ${
                   current === index + 1
-                    ? "shadow-lg shadow-blue-600/50 scale-110 text-white"
-                    : "bg-white border border-gray-300 hover:bg-blue-50 hover:scale-105 text-black"
+                    ? "shadow-lg shadow-emerald-600/50 scale-110 text-white"
+                    : "bg-white border border-emerald-100 hover:bg-emerald-50 hover:scale-105 text-slate-700"
                 } transition-all duration-300 flex items-center justify-center hover:shadow-lg hover:shadow
        }`}
               >
@@ -120,12 +119,12 @@ export function CabinetCarousel() {
             ))}
           </div>
           <div className="flex flex-col items-center mt-4">
-            <p className="text-center text-sm text-gray-500 mt-2">
+            <p className="text-center text-sm text-slate-500 mt-2">
               {current} / {count}
             </p>
           </div>
          {/* Informations de navigation pour mobile */}
-          <div className="sm:hidden text-center mt-8 text-sm text-gray-600">
+          <div className="sm:hidden text-center mt-8 text-sm text-slate-600">
             <p>Balayez horizontalement pour naviguer</p>
           </div>
     </section>

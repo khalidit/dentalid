@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+				display: ["Fraunces", "ui-serif", "Georgia", "serif"]
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
