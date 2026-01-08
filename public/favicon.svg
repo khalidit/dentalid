@@ -1,0 +1,27 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  fill="none"
+>
+  <defs>
+    <linearGradient
+      id="grad"
+      x1="8"
+      y1="6"
+      x2="56"
+      y2="58"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0" stop-color="#10b981" />
+      <stop offset="1" stop-color="#0ea5e9" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#grad)" />
+  <path
+    fill="#ffffff"
+    d="M32 14C24.5 14 19 19.5 19 26.8C19 31.8 21.7 35.3 22.6 39.7C23.6 45.2 26.7 50 31.2 50C33.6 50 34.9 47.8 35.8 45.2C36.7 47.8 38 50 40.4 50C44.9 50 48 45.2 49 39.7C49.9 35.3 52.6 31.8 52.6 26.8C52.6 19.5 47.1 14 39.6 14H32Z"
+  />
+  <circle cx="20" cy="18" r="6" fill="#ffffff" opacity="0.16" />
+</svg>

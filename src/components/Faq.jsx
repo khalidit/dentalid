@@ -82,7 +82,7 @@ export function Faq() {
               Questions Fréquentes
             </h2>
           </div>
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 mb-6">
             Retrouvez les réponses aux questions les plus courantes concernant
             notre cabinet dentaire à Champs-sur-Marne.
           </p>

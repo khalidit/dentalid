@@ -319,7 +319,7 @@ const Index = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
-            <div className="space-y-8">
+            <div className="space-y-8 order-2 lg:order-1">
               <div
                 className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm text-emerald-700 shadow-sm ring-1 ring-emerald-100/70 backdrop-blur animate-fade-up"
                 style={{ animationDelay: "60ms" }}
@@ -329,7 +329,7 @@ const Index = () => {
               </div>
 
               <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-display tracking-tight text-slate-900 animate-fade-up"
+                className="hidden lg:block text-4xl sm:text-5xl lg:text-6xl font-display tracking-tight text-slate-900 animate-fade-up"
                 style={{ animationDelay: "160ms" }}
               >
                 Un sourire confiant commence par des soins attentionnés.
@@ -394,7 +394,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative order-1 lg:order-2">
               <div className="absolute -top-6 -left-6 h-24 w-24 rounded-3xl bg-white/80 shadow-lg backdrop-blur animate-float" />
               <div className="relative overflow-hidden rounded-3xl border border-white/70 shadow-[0_30px_80px_-40px_rgba(16,185,129,0.55)]">
                 <img
@@ -403,6 +403,12 @@ const Index = () => {
                   className="rounded-3xl w-full h-auto object-cover aspect-[4/5]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent lg:hidden" />
+                <div className="absolute inset-x-0 bottom-0 p-6 lg:hidden">
+                  <h1 className="text-3xl sm:text-4xl font-display tracking-tight text-white drop-shadow-[0_6px_24px_rgba(15,23,42,0.55)]">
+                    Un sourire confiant commence par des soins attentionnés.
+                  </h1>
+                </div>
               </div>
               <div className="absolute top-6 right-6 rounded-full bg-white/90 px-4 py-2 text-md font-semibold text-emerald-700 shadow-lg">
                 Nouveaux patients bienvenus
@@ -411,7 +417,7 @@ const Index = () => {
                 type="button"
                 onClick={() => setIsHoursOpen(true)}
                 aria-haspopup="dialog"
-                className="absolute -bottom-6 left-6 rounded-2xl bg-white/90 px-4 py-3 shadow-lg backdrop-blur border border-emerald-100/60 text-left transition hover:-translate-y-0.5 hover:shadow-xl"
+                className="absolute -bottom-6 left-6 hidden lg:flex rounded-2xl bg-white/90 px-4 py-3 shadow-lg backdrop-blur border border-emerald-100/60 text-left transition hover:-translate-y-0.5 hover:shadow-xl"
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
