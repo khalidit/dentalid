@@ -122,12 +122,6 @@ const Index = () => {
       description: "Facettes esthétiques pour corriger forme et couleur",
     },
     {
-      icon: <Settings className="w-7 h-7 text-emerald-600" />,
-      title: "Prothèses sur Implant",
-      image: "/images/services/protheses-sur-implant.jpg",
-      description: "Prothèses fixes stabilisées sur implants dentaires",
-    },
-    {
       icon: <Baby className="w-7 h-7 text-emerald-600" />,
       title: "Pédodontie",
       image: "/images/services/pedodontie.jpg",
