@@ -6,11 +6,13 @@ import { useI18n } from "@/i18n";
 type LanguageSwitcherProps = {
   className?: string;
   fullWidth?: boolean;
+  size?: "sm" | "md";
 };
 
 export function LanguageSwitcher({
   className,
   fullWidth = false,
+  size = "md",
 }: LanguageSwitcherProps) {
   const { language, setLanguage, t, isRtl } = useI18n();
   const [isOpen, setIsOpen] = React.useState(false);
@@ -36,6 +38,12 @@ export function LanguageSwitcher({
   const buttonJustifyClass = fullWidth ? "w-full justify-between" : "w-auto";
   const groupDirectionClass = isRtl ? "flex-row-reverse" : "flex-row";
   const menuWidthClass = fullWidth ? "w-full" : "w-56";
+  const buttonSizeClass = size === "sm" ? "px-2.5 py-1.5 text-xs" : "px-3 py-2 text-sm";
+  const buttonGapClass = size === "sm" ? "gap-1.5" : "gap-2";
+  const groupGapClass = size === "sm" ? "gap-1.5" : "gap-2";
+  const iconSizeClass = size === "sm" ? "h-3.5 w-3.5" : "h-4 w-4";
+  const flagWrapperClass = size === "sm" ? "h-4 w-6" : "h-5 w-[30px]";
+  const flagImageClass = "h-full w-full object-contain";
 
   React.useEffect(() => {
     const handleClick = (event: MouseEvent) => {
@@ -72,24 +80,26 @@ export function LanguageSwitcher({
         id={selectId}
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`inline-flex items-center gap-2 rounded-full border border-emerald-100/70 bg-white/90 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-emerald-200 hover:bg-white hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-100 ${buttonJustifyClass}`}
+        className={`inline-flex items-center ${buttonGapClass} rounded-full border border-emerald-100/70 bg-white/90 ${buttonSizeClass} font-medium text-slate-700 shadow-sm transition hover:border-emerald-200 hover:bg-white hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-100 ${buttonJustifyClass}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label={t.language.label}
       >
-        <span className={`flex items-center gap-2 ${groupDirectionClass}`}>
-          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-emerald-100/60">
+        <span className={`flex items-center ${groupGapClass} ${groupDirectionClass}`}>
+          <span
+            className={`flex ${flagWrapperClass} items-center justify-center overflow-hidden rounded-md bg-white shadow-sm ring-1 ring-emerald-100/60`}
+          >
             <img
               src={flagsByCode[currentOption.code]}
               alt=""
               aria-hidden="true"
-              className="h-4 w-6 rounded-sm object-cover"
+              className={flagImageClass}
             />
           </span>
           <span>{currentOption.label}</span>
         </span>
         <ChevronDown
-          className={`h-4 w-4 text-emerald-700 transition-transform ${
+          className={`${iconSizeClass} text-emerald-700 transition-transform ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -118,12 +128,12 @@ export function LanguageSwitcher({
                     : "text-slate-700 hover:bg-emerald-50/60"
                 }`}
               >
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-emerald-100/60">
+                <span className="flex h-5 w-7 items-center justify-center overflow-hidden rounded-md bg-white shadow-sm ring-1 ring-emerald-100/60">
                   <img
                     src={flagsByCode[option.code as Language]}
                     alt=""
                     aria-hidden="true"
-                    className="h-4 w-6 rounded-sm object-cover"
+                    className={flagImageClass}
                   />
                 </span>
                 <span className="flex-1">{option.label}</span>

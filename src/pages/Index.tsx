@@ -145,9 +145,7 @@ const Index = () => {
                 <p className="text-lg font-semibold text-slate-900">
                   {t.brand.doctorName}
                 </p>
-                <p className="text-xs text-slate-500">
-                  {t.brand.clinicLabel}
-                </p>
+                <p className="text-xs text-slate-500">{t.brand.clinicLabel}</p>
               </div>
             </div>
 
@@ -211,16 +209,19 @@ const Index = () => {
               {t.cta.bookShort}
             </Button>
 
-            <button
-              className="md:hidden p-2"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+            <div className="flex items-center gap-2 md:hidden">
+              <LanguageSwitcher size="sm" />
+              <button
+                className="p-2"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
           </div>
 
           {isMenuOpen && (
@@ -371,7 +372,7 @@ const Index = () => {
               <div className="absolute -top-6 -left-6 h-24 w-24 rounded-3xl bg-white/80 shadow-lg backdrop-blur animate-float" />
               <div className="relative overflow-hidden rounded-3xl border border-white/70 shadow-[0_30px_80px_-40px_rgba(16,185,129,0.55)]">
                 <img
-                  src="images/natural_look_smiling_with_healthy_white.jpg"
+                  src="images/women_profil.png"
                   alt={t.alt.hero}
                   className="rounded-3xl w-full h-auto object-cover aspect-[4/5]"
                 />
