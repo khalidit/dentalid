@@ -591,7 +591,7 @@ const Index = () => {
                         Horaires d'ouverture
                       </p>
                       <div className="space-y-1">
-                        <p>Lun, Mar, Jeu, Ven : 09h00-19h30</p>
+                        <p>Lun, Mar, Mer, Jeu, Ven : 09h00-19h30</p>
                         <p>Samedi : 09h00-14h00</p>
                         <p>Dimanche : Fermé</p>
                       </div>
@@ -669,7 +669,7 @@ const Index = () => {
             <div className="px-6 pb-6 space-y-2 text-sm text-slate-600">
               <div className="flex items-center justify-between rounded-2xl bg-emerald-50/70 px-4 py-2">
                 <span className="font-medium text-slate-900">
-                  Lun, Mar, Jeu, Ven
+                  Lun, Mar, Mer, Jeu, Ven
                 </span>
                 <span>09h00 - 19h30</span>
               </div>
