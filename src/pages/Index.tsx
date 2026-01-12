@@ -2,6 +2,7 @@ import {
   Phone,
   MapPin,
   Clock,
+  CalendarCheck,
   Mail,
   Menu,
   X,
@@ -18,7 +19,6 @@ import {
   ShieldCheck,
   Baby,
   Radio,
-  Settings,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -26,8 +26,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CabinetCarousel } from "@/components/CabinetCarousel";
 import { Team } from "@/components/Team";
 import { Faq } from "@/components/Faq";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { useI18n } from "@/i18n";
 
 const Index = () => {
+  const { t, isRtl } = useI18n();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHoursOpen, setIsHoursOpen] = useState(false);
   const currentYear = new Date().getFullYear();
@@ -45,184 +48,158 @@ const Index = () => {
     setIsMenuOpen(false);
   };
 
-  const heroHighlights = [
-    {
-      icon: <ShieldCheck className="h-5 w-5 text-emerald-600" />,
-      title: "Hygiène maîtrisée",
-      description: "Protocoles rigoureux pour une sécurité maximale.",
-    },
-    {
-      icon: <Sparkles className="h-5 w-5 text-emerald-600" />,
-      title: "Esthétique naturelle",
-      description: "Des soins précis pour un sourire harmonieux.",
-    },
-    {
-      icon: <MapPin className="h-5 w-5 text-emerald-600" />,
-      title: "Accès facile",
-      description: "RER A et bus à proximité immédiate.",
-    },
+  const textAlignClass = isRtl ? "text-right" : "text-left";
+
+  const heroHighlightIcons = [
+    <ShieldCheck className="h-5 w-5 text-emerald-600" />,
+    <Sparkles className="h-5 w-5 text-emerald-600" />,
+    <MapPin className="h-5 w-5 text-emerald-600" />,
   ];
 
-  const services = [
+  const heroHighlights = t.heroHighlights.map((highlight, index) => ({
+    ...highlight,
+    icon: heroHighlightIcons[index],
+  }));
+
+  const serviceAssets = [
     {
       icon: <Stethoscope className="w-7 h-7 text-emerald-600" />,
-      title: "Soins Conservateurs",
       image: "/images/services/soins-conservateurs.jpg",
-      description:
-        "Caries, détartrage, soins de routine pour préserver vos dents naturelles",
     },
     {
       icon: <Shield className="w-7 h-7 text-emerald-600" />,
-      title: "Prothèses Dentaires",
       image: "/images/services/protheses-dentaires.jpg",
-      description: "Couronnes, bridges, dentiers fixes ou amovibles sur mesure",
     },
     {
       icon: <Heart className="w-7 h-7 text-emerald-600" />,
-      title: "Implants Dentaires",
       image: "/images/services/implants-dentaires.jpg",
-      description: "Solutions durables et esthétiques, implantologie avancée",
     },
     {
       icon: <Zap className="w-7 h-7 text-emerald-600" />,
-      title: "Orthodontie",
       image: "/images/services/orthodontie.jpg",
-      description: "Alignement et correction dentaire, gouttières dentaires",
     },
     {
       icon: <AlertTriangle className="w-7 h-7 text-emerald-600" />,
-      title: "Urgences Dentaires",
       image: "/images/services/urgences-dentaires.jpg",
-      description:
-        "Prise en charge rapide des urgences et extractions dentaires",
     },
     {
       icon: <Sparkles className="w-7 h-7 text-emerald-600" />,
-      title: "Blanchiment des dents",
       image: "/images/services/blanchiment.jpg",
-      description: "Éclaircissement dentaire pour un sourire éclatant",
     },
     {
       icon: <ShieldCheck className="w-7 h-7 text-emerald-600" />,
-      title: "Bruxisme",
       image: "/images/services/bruxisme.jpg",
-      description:
-        "Traitement du grincement de dents, gouttières de protection",
     },
     {
       icon: <Activity className="w-7 h-7 text-emerald-600" />,
-      title: "Endodontie",
       image: "/images/services/endodontie.jpg",
-      description: "Traitement des canaux radiculaires, dévitalisation",
     },
     {
       icon: <Layers className="w-7 h-7 text-emerald-600" />,
-      title: "Facettes Dentaires",
       image: "/images/services/facettes.jpg",
-      description: "Facettes esthétiques pour corriger forme et couleur",
     },
     {
       icon: <Baby className="w-7 h-7 text-emerald-600" />,
-      title: "Pédodontie",
       image: "/images/services/pedodontie.jpg",
-      description: "Soins dentaires spécialisés pour enfants et adolescents",
     },
     {
       icon: <Radio className="w-7 h-7 text-emerald-600" />,
-      title: "Imagerie Dentaire",
       image: "/images/services/imagerie-dentaire.jpg",
-      description: "Radio panoramique, Cône beam 3D pour diagnostic précis",
     },
     {
       icon: <Scan className="w-7 h-7 text-emerald-600" />,
-      title: "Stellite Dentaire",
       image: "/images/services/stellite.jpg",
-      description: "Prothèses partielles en alliage métallique léger",
     },
   ];
 
-  const advantages = [
-    {
-      icon: <Award className="w-6 h-6 text-emerald-600" />,
-      title: "Équipements Modernes",
-      description: "Technologies de pointe pour des soins optimaux",
-    },
-    {
-      icon: <Shield className="w-6 h-6 text-emerald-600" />,
-      title: "Accessible PMR",
-      description: "Cabinet au rez-de-chaussée, entièrement accessible",
-    },
-    {
-      icon: <Zap className="w-6 h-6 text-emerald-600" />,
-      title: "Bien Desservi",
-      description: "RER A + Bus (lignes 211, 213, 220)",
-    },
+  const services = serviceAssets.map((service, index) => ({
+    ...service,
+    ...t.services[index],
+  }));
+
+  const advantageAssets = [
+    { icon: <Award className="w-6 h-6 text-emerald-600" /> },
+    { icon: <Shield className="w-6 h-6 text-emerald-600" /> },
+    { icon: <Zap className="w-6 h-6 text-emerald-600" /> },
   ];
+
+  const advantages = advantageAssets.map((advantage, index) => ({
+    ...advantage,
+    ...t.advantages[index],
+  }));
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="bg-white/80 backdrop-blur-xl border-b border-emerald-100/60 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-sky-500 flex items-center justify-center mr-3 shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-sky-500 flex items-center justify-center shadow-sm">
                 <img
                   src="images/logo.png"
-                  alt="Cabinet Dentaire Logo"
+                  alt={t.alt.logo}
                   className="w-6 h-6"
                 />
               </div>
               <div>
                 <p className="text-lg font-semibold text-slate-900">
-                  Dr Marzak
+                  {t.brand.doctorName}
                 </p>
-                <p className="text-xs text-slate-500">Cabinet Dentaire</p>
+                <p className="text-xs text-slate-500">
+                  {t.brand.clinicLabel}
+                </p>
               </div>
             </div>
 
-            <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <nav
+              className={`hidden md:flex items-center text-sm font-medium ${
+                isRtl ? "space-x-6 space-x-reverse" : "space-x-6"
+              }`}
+            >
               <button
                 onClick={() => scrollToSection("accueil")}
                 className="text-slate-600 hover:text-emerald-700 transition-colors"
               >
-                Accueil
+                {t.nav.home}
               </button>
               <button
                 onClick={() => scrollToSection("cabinet")}
                 className="text-slate-600 hover:text-emerald-700 transition-colors"
               >
-                Le Cabinet
+                {t.nav.cabinet}
               </button>
               <button
                 onClick={() => scrollToSection("services")}
                 className="text-slate-600 hover:text-emerald-700 transition-colors"
               >
-                Services
+                {t.nav.services}
               </button>
               <button
                 onClick={() => scrollToSection("team")}
                 className="text-slate-600 hover:text-emerald-700 transition-colors"
               >
-                Notre Équipe
+                {t.nav.team}
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
                 className="text-slate-600 hover:text-emerald-700 transition-colors"
               >
-                FAQ
+                {t.nav.faq}
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
                 className="text-slate-600 hover:text-emerald-700 transition-colors"
               >
-                Contact
+                {t.nav.contact}
               </button>
               <a
                 href="tel:01-64-68-59-59"
-                className="hidden lg:inline-flex items-center rounded-full border border-emerald-100/70 px-3 py-1 text-emerald-700 hover:border-emerald-200 hover:text-emerald-800 transition"
+                className="hidden lg:inline-flex items-center gap-2 rounded-full border border-emerald-100/70 bg-white/90 px-3 py-1.5 text-emerald-700 shadow-sm shadow-emerald-600/10 transition hover:border-emerald-200 hover:text-emerald-800 hover:shadow-md"
               >
-                01-64-68-59-59
+                <Phone className="h-4 w-4" />
+                <span>01-64-68-59-59</span>
               </a>
+              <LanguageSwitcher />
             </nav>
 
             <Button
@@ -230,7 +207,8 @@ const Index = () => {
               className="hidden md:inline-flex bg-emerald-600 hover:bg-emerald-700 text-white rounded-full px-5 shadow-lg shadow-emerald-600/30"
               onClick={() => window.open(bookingUrl, "_blank")}
             >
-              Prendre RDV
+              <CalendarCheck className="h-4 w-4 mr-2" />
+              {t.cta.bookShort}
             </Button>
 
             <button
@@ -250,45 +228,47 @@ const Index = () => {
               <nav className="flex flex-col space-y-4 px-2 text-sm font-medium">
                 <button
                   onClick={() => scrollToSection("accueil")}
-                  className="text-slate-700 hover:text-emerald-700 transition-colors text-left"
+                  className={`text-slate-700 hover:text-emerald-700 transition-colors ${textAlignClass}`}
                 >
-                  Accueil
+                  {t.nav.home}
                 </button>
                 <button
                   onClick={() => scrollToSection("cabinet")}
-                  className="text-slate-700 hover:text-emerald-700 transition-colors text-left"
+                  className={`text-slate-700 hover:text-emerald-700 transition-colors ${textAlignClass}`}
                 >
-                  Le Cabinet
+                  {t.nav.cabinet}
                 </button>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className="text-slate-700 hover:text-emerald-700 transition-colors text-left"
+                  className={`text-slate-700 hover:text-emerald-700 transition-colors ${textAlignClass}`}
                 >
-                  Services
+                  {t.nav.services}
                 </button>
                 <button
                   onClick={() => scrollToSection("team")}
-                  className="text-slate-700 hover:text-emerald-700 transition-colors text-left"
+                  className={`text-slate-700 hover:text-emerald-700 transition-colors ${textAlignClass}`}
                 >
-                  Notre Équipe
+                  {t.nav.team}
                 </button>
                 <button
                   onClick={() => scrollToSection("faq")}
-                  className="text-slate-700 hover:text-emerald-700 transition-colors text-left"
+                  className={`text-slate-700 hover:text-emerald-700 transition-colors ${textAlignClass}`}
                 >
-                  FAQ
+                  {t.nav.faq}
                 </button>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="text-slate-700 hover:text-emerald-700 transition-colors text-left"
+                  className={`text-slate-700 hover:text-emerald-700 transition-colors ${textAlignClass}`}
                 >
-                  Contact
+                  {t.nav.contact}
                 </button>
+                <LanguageSwitcher fullWidth />
                 <Button
                   className="bg-emerald-600 hover:bg-emerald-700 text-white w-full rounded-full"
                   onClick={() => window.open(bookingUrl, "_blank")}
                 >
-                  Prendre RDV
+                  <CalendarCheck className="h-4 w-4 mr-2" />
+                  {t.cta.bookShort}
                 </Button>
               </nav>
             </div>
@@ -319,21 +299,20 @@ const Index = () => {
                 style={{ animationDelay: "60ms" }}
               >
                 <Sparkles className="h-4 w-4" />
-                Cabinet dentaire moderne à Champs-sur-Marne
+                {t.hero.badge}
               </div>
 
               <h1
                 className="hidden lg:block text-4xl sm:text-5xl lg:text-6xl font-display tracking-tight text-slate-900 animate-fade-up"
                 style={{ animationDelay: "160ms" }}
               >
-                Un sourire confiant commence par des soins attentionnés.
+                {t.hero.title}
               </h1>
               <p
                 className="text-lg text-slate-600 max-w-xl animate-fade-up"
                 style={{ animationDelay: "240ms" }}
               >
-                Des traitements personnalisés, une équipe bienveillante et un
-                cabinet pensé pour votre confort au cœur de Champs-sur-Marne.
+                {t.hero.subtitle}
               </p>
               <div
                 className="flex flex-col sm:flex-row gap-4 animate-fade-up"
@@ -344,8 +323,8 @@ const Index = () => {
                   className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full px-8 shadow-lg shadow-emerald-600/30"
                   onClick={() => window.open(bookingUrl, "_blank")}
                 >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Prendre rendez-vous
+                  <CalendarCheck className="w-5 h-5 mr-2" />
+                  {t.cta.bookLong}
                 </Button>
                 <Button
                   variant="outline"
@@ -358,7 +337,7 @@ const Index = () => {
                   }
                 >
                   <MapPin className="w-5 h-5 mr-2" />
-                  Nous localiser
+                  {t.cta.locate}
                 </Button>
               </div>
               <div
@@ -393,25 +372,25 @@ const Index = () => {
               <div className="relative overflow-hidden rounded-3xl border border-white/70 shadow-[0_30px_80px_-40px_rgba(16,185,129,0.55)]">
                 <img
                   src="images/natural_look_smiling_with_healthy_white.jpg"
-                  alt="Sourire éclatant et naturel"
+                  alt={t.alt.hero}
                   className="rounded-3xl w-full h-auto object-cover aspect-[4/5]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent lg:hidden" />
                 <div className="absolute inset-x-0 bottom-0 p-6 lg:hidden">
                   <h1 className="text-3xl sm:text-4xl font-display tracking-tight text-white drop-shadow-[0_6px_24px_rgba(15,23,42,0.55)]">
-                    Un sourire confiant commence par des soins attentionnés.
+                    {t.hero.title}
                   </h1>
                 </div>
               </div>
               <div className="absolute top-6 right-6 rounded-full bg-white/90 px-4 py-2 text-md font-semibold text-emerald-700 shadow-lg">
-                Nouveaux patients bienvenus
+                {t.hero.newPatients}
               </div>
               <button
                 type="button"
                 onClick={() => setIsHoursOpen(true)}
                 aria-haspopup="dialog"
-                className="absolute -bottom-6 left-6 hidden lg:flex rounded-2xl bg-white/90 px-4 py-3 shadow-lg backdrop-blur border border-emerald-100/60 text-left transition hover:-translate-y-0.5 hover:shadow-xl"
+                className={`absolute -bottom-6 left-6 hidden lg:flex rounded-2xl bg-white/90 px-4 py-3 shadow-lg backdrop-blur border border-emerald-100/60 ${textAlignClass} transition hover:-translate-y-0.5 hover:shadow-xl`}
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
@@ -419,9 +398,9 @@ const Index = () => {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-slate-900">
-                      Horaires flexibles
+                      {t.hero.hoursTitle}
                     </p>
-                    <p className="text-xs text-slate-500">Voir les horaires</p>
+                    <p className="text-xs text-slate-500">{t.hero.hoursCta}</p>
                   </div>
                 </div>
               </button>
@@ -439,11 +418,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-display font-semibold text-slate-900 mb-4">
-              Nos Services
+              {t.servicesSection.title}
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Une gamme complète de soins dentaires pour toute la famille, avec
-              des équipements modernes et une approche personnalisée.
+              {t.servicesSection.subtitle}
             </p>
           </div>
 
@@ -465,7 +443,7 @@ const Index = () => {
                     {service.icon}
                   </div>
                 </div>
-                <CardContent className="p-6 text-left">
+                <CardContent className={`p-6 ${textAlignClass}`}>
                   <h3 className="text-xl font-semibold text-slate-900 mb-3">
                     {service.title}
                   </h3>
@@ -481,11 +459,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-display font-semibold text-slate-900 mb-4">
-              Pourquoi nous choisir ?
+              {t.advantagesSection.title}
             </h2>
             <p className="text-lg text-slate-600">
-              Un cabinet moderne, accessible et parfaitement situé pour votre
-              confort.
+              {t.advantagesSection.subtitle}
             </p>
           </div>
 
@@ -523,10 +500,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-display font-semibold text-slate-900 mb-4">
-              Contact & Localisation
+              {t.contactSection.title}
             </h2>
             <p className="text-lg text-slate-600">
-              Facilement accessible en transport en commun et en voiture.
+              {t.contactSection.subtitle}
             </p>
           </div>
 
@@ -535,13 +512,14 @@ const Index = () => {
               <div className="rounded-3xl border border-emerald-100/60 bg-white/90 p-6 shadow-xl backdrop-blur">
                 <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
                   <h3 className="text-2xl font-semibold text-slate-900">
-                    Informations Pratiques
+                    {t.contactCard.title}
                   </h3>
                   <Button
                     className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full"
                     onClick={() => window.open(bookingUrl, "_blank")}
                   >
-                    Prendre RDV
+                    <CalendarCheck className="h-4 w-4 mr-2" />
+                    {t.cta.bookShort}
                   </Button>
                 </div>
 
@@ -549,7 +527,9 @@ const Index = () => {
                   <div className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-emerald-600 mt-1" />
                     <div>
-                      <p className="font-semibold text-slate-900">Adresse</p>
+                      <p className="font-semibold text-slate-900">
+                        {t.contactCard.addressLabel}
+                      </p>
                       <p>
                         2 Cours du Luzard
                         <br />
@@ -561,10 +541,12 @@ const Index = () => {
                   <div className="flex items-start gap-3">
                     <Phone className="w-5 h-5 text-emerald-600 mt-1" />
                     <div>
-                      <p className="font-semibold text-slate-900">Téléphone</p>
+                      <p className="font-semibold text-slate-900">
+                        {t.contactCard.phoneLabel}
+                      </p>
                       <a
                         href="tel:01-64-68-59-59"
-                        className="text-emerald-700 hover:text-emerald-800 transition-colors"
+                        className="inline-flex rounded-full bg-emerald-50/80 px-3 py-1 text-emerald-700 shadow-sm transition hover:bg-emerald-50 hover:text-emerald-800 hover:shadow-md"
                       >
                         01-64-68-59-59
                       </a>
@@ -574,7 +556,9 @@ const Index = () => {
                   <div className="flex items-start gap-3">
                     <Mail className="w-5 h-5 text-emerald-600 mt-1" />
                     <div>
-                      <p className="font-semibold text-slate-900">Email</p>
+                      <p className="font-semibold text-slate-900">
+                        {t.contactCard.emailLabel}
+                      </p>
                       <a
                         href="mailto:cabinet.drmk@gmail.com"
                         className="text-emerald-700 hover:text-emerald-800 transition-colors"
@@ -588,12 +572,21 @@ const Index = () => {
                     <Clock className="w-5 h-5 text-emerald-600 mt-1" />
                     <div>
                       <p className="font-semibold text-slate-900 mb-2">
-                        Horaires d'ouverture
+                        {t.contactCard.hoursLabel}
                       </p>
                       <div className="space-y-1">
-                        <p>Lun, Mar, Mer, Jeu, Ven : 09h00-19h30</p>
-                        <p>Samedi : 09h00-14h00</p>
-                        <p>Dimanche : Fermé</p>
+                        <p>
+                          {t.hours.summary.weekdays.label} :{" "}
+                          {t.hours.summary.weekdays.time}
+                        </p>
+                        <p>
+                          {t.hours.summary.saturday.label} :{" "}
+                          {t.hours.summary.saturday.time}
+                        </p>
+                        <p>
+                          {t.hours.summary.sunday.label} :{" "}
+                          {t.hours.summary.sunday.time}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -602,20 +595,24 @@ const Index = () => {
 
               <div className="rounded-3xl border border-emerald-100/60 bg-white/80 p-6 shadow-md">
                 <h4 className="font-semibold text-slate-900 mb-3">
-                  Transports
+                  {t.transports.title}
                 </h4>
                 <div className="text-slate-600 text-sm space-y-1">
                   <p>
-                    <strong>RER A :</strong> Station Noisiel
+                    <strong>{t.transports.rerLabel}:</strong>{" "}
+                    {t.transports.rerDetail}
                   </p>
                   <p>
-                    <strong>Bus :</strong> Lignes 211, 213, 220
+                    <strong>{t.transports.busLabel}:</strong>{" "}
+                    {t.transports.busDetail}
                   </p>
                   <p>
-                    <strong>Arrêts :</strong> Collège Le Luzard, Commissariat
+                    <strong>{t.transports.stopsLabel}:</strong>{" "}
+                    {t.transports.stopsDetail}
                   </p>
                   <p>
-                    <strong>Parking :</strong> 29 Square de Diane, Noisiel
+                    <strong>{t.transports.parkingLabel}:</strong>{" "}
+                    {t.transports.parkingDetail}
                   </p>
                 </div>
               </div>
@@ -628,7 +625,7 @@ const Index = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Plan d'accès cabinet dentaire"
+                title={t.map.title}
               />
             </div>
           </div>
@@ -645,23 +642,23 @@ const Index = () => {
             type="button"
             className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
             onClick={() => setIsHoursOpen(false)}
-            aria-label="Fermer la fenêtre horaires"
+            aria-label={t.modal.closeOverlay}
           />
           <div className="relative w-full max-w-md rounded-3xl border border-emerald-100/70 bg-white shadow-2xl">
             <div className="flex items-start justify-between gap-4 p-6 pb-4">
               <div>
                 <p className="text-sm font-semibold text-emerald-600">
-                  Horaires
+                  {t.modal.label}
                 </p>
                 <h3 className="text-2xl font-display text-slate-900 mt-1">
-                  Horaires d'ouverture
+                  {t.modal.title}
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setIsHoursOpen(false)}
                 className="h-10 w-10 rounded-full border border-emerald-100 text-slate-500 hover:text-emerald-700 hover:border-emerald-200 transition"
-                aria-label="Fermer"
+                aria-label={t.cta.close}
               >
                 <X className="h-5 w-5 mx-auto" />
               </button>
@@ -669,31 +666,36 @@ const Index = () => {
             <div className="px-6 pb-6 space-y-2 text-sm text-slate-600">
               <div className="flex items-center justify-between rounded-2xl bg-emerald-50/70 px-4 py-2">
                 <span className="font-medium text-slate-900">
-                  Lun, Mar, Mer, Jeu, Ven
+                  {t.hours.summary.weekdays.label}
                 </span>
-                <span>09h00 - 19h30</span>
+                <span>{t.hours.summary.weekdays.time}</span>
               </div>
               <div className="flex items-center justify-between rounded-2xl bg-emerald-50/70 px-4 py-2">
-                <span className="font-medium text-slate-900">Samedi</span>
-                <span>09h00 - 14h00</span>
+                <span className="font-medium text-slate-900">
+                  {t.hours.summary.saturday.label}
+                </span>
+                <span>{t.hours.summary.saturday.time}</span>
               </div>
               <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-2">
-                <span className="font-medium text-slate-900">Dimanche</span>
-                <span>Fermé</span>
+                <span className="font-medium text-slate-900">
+                  {t.hours.summary.sunday.label}
+                </span>
+                <span>{t.hours.summary.sunday.time}</span>
               </div>
               <div className="pt-4 flex flex-col sm:flex-row gap-3">
                 <Button
                   className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full w-full"
                   onClick={() => window.open(bookingUrl, "_blank")}
                 >
-                  Prendre RDV
+                  <CalendarCheck className="h-4 w-4 mr-2" />
+                  {t.cta.bookShort}
                 </Button>
                 <Button
                   variant="outline"
                   className="border-emerald-200 text-emerald-700 hover:bg-emerald-50 rounded-full w-full"
                   onClick={() => setIsHoursOpen(false)}
                 >
-                  Fermer
+                  {t.cta.close}
                 </Button>
               </div>
             </div>
@@ -707,36 +709,40 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-3">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
                   <img
                     src="images/logo.png"
-                    alt="Cabinet Dentaire Logo"
+                    alt={t.alt.logo}
                     className="w-7 h-7"
                   />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white">
-                    Cabinet Dentaire
+                    {t.brand.clinicLabel}
                   </h3>
-                  <p className="text-emerald-200 text-sm">Dr Marzak</p>
+                  <p className="text-emerald-200 text-sm">
+                    {t.brand.doctorName}
+                  </p>
                 </div>
               </div>
               <p className="text-emerald-100/70 leading-relaxed max-w-sm">
-                Soins dentaires de qualité dans un environnement moderne et
-                rassurant.
+                {t.footer.description}
               </p>
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">Contact</h4>
+              <h4 className="text-lg font-semibold mb-4">
+                {t.footer.contactTitle}
+              </h4>
               <ul className="space-y-2 text-emerald-100/80">
                 <li>
                   <a
                     href="tel:01-64-68-59-59"
-                    className="flex items-center gap-2 text-emerald-200 hover:text-emerald-100 transition"
+                    className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-emerald-100/90 ring-1 ring-white/10 transition hover:bg-white/15 hover:text-white"
                   >
-                    📞 01 64 68 59 59
+                    <Phone className="h-4 w-4" />
+                    <span>01 64 68 59 59</span>
                   </a>
                 </li>
                 <li>
@@ -760,8 +766,7 @@ const Index = () => {
 
           <div className="border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center text-emerald-100/70 text-sm">
             <p>
-              &copy; {currentYear} Cabinet Dentaire Dr Marzak. Tous droits
-              réservés.
+              &copy; {currentYear} {t.footer.rights}
             </p>
           </div>
         </div>

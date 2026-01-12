@@ -6,13 +6,14 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
+import { useI18n } from "@/i18n";
 
-const cabinetImages = Array.from({ length: 4 }, (_, i) => ({
+const cabinetImages = Array.from({ length: 7 }, (_, i) => ({
   src: `images/accueil${i + 1}_dr_marzak.jpg`,
-  alt: `Image ${i + 1}`,
 }));
 
 export function CabinetCarousel() {
+  const { t } = useI18n();
   const [api, setApi] = React.useState();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -51,10 +52,10 @@ export function CabinetCarousel() {
         {/* En-tête avec animation */}
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-semibold text-slate-900 mb-3 sm:mb-4">
-            Découvrez notre cabinet
+            {t.cabinetCarousel.title}
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-6">
-            Un environnement moderne et professionnel pour votre bien-être dentaire
+            {t.cabinetCarousel.subtitle}
           </p>
         </div>
 
@@ -62,6 +63,7 @@ export function CabinetCarousel() {
         <div className="w-full mx-auto max-w-[952px]">
           <Carousel
             className="mx-auto"
+            dir="ltr"
             setApi={setApi}
             opts={{
               align: "center",
@@ -76,7 +78,7 @@ export function CabinetCarousel() {
                     {/* Image avec effet parallax */}
                     <img
                       src={image.src}
-                      alt={image.alt}
+                      alt={t.cabinetCarousel.imageAlt(index + 1)}
                       className="w-full h-fit md:h-full object-cover"
                     />
 
