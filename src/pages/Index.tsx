@@ -32,7 +32,7 @@ const Index = () => {
   const [isHoursOpen, setIsHoursOpen] = useState(false);
   const currentYear = new Date().getFullYear();
   const bookingUrl =
-    "https://www.doctolib.fr/dentiste/champs-sur-marne/hauda-marzak/booking/motive-categories?specialityId=1&telehealth=false&placeId=practice-118496&profile_skipped=true&bookingFunnelSource=external_referral";
+    "https://www.doctolib.fr/cabinet-dentaire/champs-sur-marne/cabinet-dentaire-dr-marzak";
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
