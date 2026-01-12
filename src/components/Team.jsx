@@ -1,43 +1,19 @@
 import React from "react";
+import { useI18n } from "@/i18n";
 
 export function Team() {
-  const teamMembers = [
-    {
-      name: "Dr MARZAK Hauda",
-      img: "/images/team/dr-marak-hauda.jpg",
-      alt: "Dr Marzak Hauda",
-      diplomas: [
-        "Diplôme d'État de docteur en chirurgie dentaire - PARIS VII",
-        "DU Implantologie Orale et Maxillo-faciale en 2021 - PARIS XII",
-      ],
-    },
-    {
-      name: "Dr Fatiha Semmarene",
-      img: "/images/team/profil-dentiste.png",
-      alt: "Dr Fatiha Semmarene",
-      diplomas: [
-        "Diplôme d'État de docteur en chirurgie dentaire - Faculté de Chirurgie Dentaire de Nancy",
-      ],
-    },
-    {
-      name: "Dr Myriam BETTAIBI",
-      img: "/images/team/profil-dentiste.png",
-      alt: "Dr Myriam BETTAIBI",
-      diplomas: ["Diplôme d'État de docteur en chirurgie dentaire"],
-    },
-    {
-      name: "Simona",
-      img: "/images/team/simona.jpg",
-      alt: "Simona - Assistante dentaire",
-      diplomas: ["Assistante dentaire qualifiée", "Référente du cabinet"],
-    },
-    {
-      name: "Sali",
-      img: "/images/team/profil-assistante.png",
-      alt: "Sali - Assistante dentaire",
-      diplomas: ["Assistante dentaire qualifiée"],
-    },
+  const { t } = useI18n();
+  const teamImages = [
+    "/images/team/dr-marak-hauda.jpg",
+    "/images/team/profil-dentiste.png",
+    "/images/team/profil-dentiste.png",
+    "/images/team/simona.jpg",
+    "/images/team/profil-assistante.png",
   ];
+  const teamMembers = t.team.members.map((member, index) => ({
+    ...member,
+    img: teamImages[index] ?? "/images/team/profil-assistante.png",
+  }));
 
   return (
     <section
@@ -47,11 +23,10 @@ export function Team() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-display font-semibold text-slate-900 mt-4 mb-4">
-            Une équipe experte et attentionnée
+            {t.team.title}
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Des praticiens expérimentés et une équipe bienveillante pour vous
-            accompagner à chaque étape.
+            {t.team.subtitle}
           </p>
         </div>
 
