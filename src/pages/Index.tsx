@@ -33,9 +33,12 @@ const Index = () => {
   const { t, isRtl } = useI18n();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHoursOpen, setIsHoursOpen] = useState(false);
+  const [isEmergencyOpen, setIsEmergencyOpen] = useState(false);
   const currentYear = new Date().getFullYear();
   const bookingUrl =
     "https://www.doctolib.fr/cabinet-dentaire/champs-sur-marne/cabinet-dentaire-dr-marzak";
+  const emergencyPhone = "01-64-68-59-59";
+  const emergencyPhoneDisplay = "01 64 68 59 59";
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -49,6 +52,7 @@ const Index = () => {
   };
 
   const textAlignClass = isRtl ? "text-right" : "text-left";
+  const emergencySideClass = "-left-6 sm:-left-6 lg:-left-4";
 
   const heroHighlightIcons = [
     <ShieldCheck className="h-5 w-5 text-emerald-600" />,
@@ -62,6 +66,10 @@ const Index = () => {
   }));
 
   const serviceAssets = [
+    {
+      icon: <AlertTriangle className="w-7 h-7 text-emerald-600" />,
+      image: "/images/services/urgences-dentaires.jpg",
+    },
     {
       icon: <Stethoscope className="w-7 h-7 text-emerald-600" />,
       image: "/images/services/soins-conservateurs.jpg",
@@ -77,10 +85,6 @@ const Index = () => {
     {
       icon: <Zap className="w-7 h-7 text-emerald-600" />,
       image: "/images/services/orthodontie.jpg",
-    },
-    {
-      icon: <AlertTriangle className="w-7 h-7 text-emerald-600" />,
-      image: "/images/services/urgences-dentaires.jpg",
     },
     {
       icon: <Sparkles className="w-7 h-7 text-emerald-600" />,
@@ -292,7 +296,7 @@ const Index = () => {
           aria-hidden="true"
         />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 lg:pt-16 lg:pb-28">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
             <div className="space-y-8 order-2 lg:order-1">
               <div
@@ -370,6 +374,19 @@ const Index = () => {
 
             <div className="relative order-1 lg:order-2">
               <div className="absolute -top-6 -left-6 h-24 w-24 rounded-3xl bg-white/80 shadow-lg backdrop-blur animate-float" />
+              <button
+                type="button"
+                onClick={() => setIsEmergencyOpen(true)}
+                aria-haspopup="dialog"
+                aria-label={t.emergency.title}
+                className={`group absolute -top-4 z-20 w-36 sm:-top-5 sm:w-40 md:-top-6 md:w-44 lg:-top-7 lg:w-56 xl:w-60 ${emergencySideClass} isolate focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200/80`}
+              >
+                <img
+                  src="/images/services/urgence.png"
+                  alt={t.emergency.imageAlt}
+                  className="w-full object-contain aspect-[4/3] drop-shadow-[0_18px_35px_rgba(15,23,42,0.35)] transition-transform duration-500 lg:group-hover:scale-[1.05]"
+                />
+              </button>
               <div className="relative overflow-hidden rounded-3xl border border-white/70 shadow-[0_30px_80px_-40px_rgba(16,185,129,0.55)]">
                 <img
                   src="images/women_profil.png"
@@ -695,6 +712,104 @@ const Index = () => {
                   variant="outline"
                   className="border-emerald-200 text-emerald-700 hover:bg-emerald-50 rounded-full w-full"
                   onClick={() => setIsHoursOpen(false)}
+                >
+                  {t.cta.close}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isEmergencyOpen && (
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center px-4 py-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t.emergency.title}
+        >
+          <button
+            type="button"
+            className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"
+            onClick={() => setIsEmergencyOpen(false)}
+            aria-label={t.modal.closeOverlay}
+          />
+          <div className="relative w-full max-w-lg overflow-hidden rounded-[32px] border border-emerald-100/70 bg-white shadow-2xl">
+            <div
+              className="absolute inset-0 bg-[radial-gradient(22rem_20rem_at_10%_-10%,rgba(16,185,129,0.18),transparent_65%),radial-gradient(18rem_16rem_at_90%_0%,rgba(14,165,233,0.14),transparent_60%)]"
+              aria-hidden="true"
+            />
+            <div className="relative p-6 sm:p-8">
+              <div className="flex items-start justify-between gap-4">
+                <div className={textAlignClass}>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600">
+                    {t.emergency.label}
+                  </p>
+                  <h3 className="text-3xl font-display text-slate-900 mt-2">
+                    {t.emergency.title}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsEmergencyOpen(false)}
+                  className="h-10 w-10 rounded-full border border-emerald-100 text-slate-500 hover:text-emerald-700 hover:border-emerald-200 transition"
+                  aria-label={t.cta.close}
+                >
+                  <X className="h-5 w-5 mx-auto" />
+                </button>
+              </div>
+
+              <div className="mt-5 overflow-hidden rounded-3xl  shadow-sm">
+                <div className="relative h-40">
+                  <img
+                    src="/images/services/urgences-dentaires.jpg"
+                    alt={t.emergency.imageAlt}
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-slate-900/50 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-emerald-700 shadow-sm">
+                      <AlertTriangle className="h-4 w-4" />
+                      {t.emergency.badge}
+                    </span>
+                  </div>
+                </div>
+                <div className={`p-4 ${textAlignClass}`}>
+                  <p className="text-sm text-slate-600">
+                    {t.emergency.description}
+                  </p>
+                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+                        {t.emergency.phoneLabel}
+                      </p>
+                      <p className="text-xl font-semibold text-emerald-700">
+                        {emergencyPhoneDisplay}
+                      </p>
+                    </div>
+                    <a
+                      href={`tel:${emergencyPhone}`}
+                      className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700 shadow-sm shadow-emerald-100/70 transition hover:bg-emerald-100"
+                    >
+                      <Phone className="h-4 w-4" />
+                      {t.emergency.ctaCall}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6 flex flex-col sm:flex-row gap-3">
+                <Button
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full w-full"
+                  onClick={() => window.open(bookingUrl, "_blank")}
+                >
+                  <CalendarCheck className="h-4 w-4 mr-2" />
+                  {t.emergency.ctaBook}
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-emerald-200 text-emerald-700 hover:bg-emerald-50 rounded-full w-full"
+                  onClick={() => setIsEmergencyOpen(false)}
                 >
                   {t.cta.close}
                 </Button>

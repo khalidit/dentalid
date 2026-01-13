@@ -34,6 +34,17 @@ export type Translation = {
     hoursTitle: string;
     hoursCta: string;
   };
+  emergency: {
+    label: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    phoneLabel: string;
+    ctaCall: string;
+    ctaBook: string;
+    badge: string;
+    imageAlt: string;
+  };
   heroHighlights: Array<{ title: string; description: string }>;
   servicesSection: { title: string; subtitle: string };
   services: Array<{ title: string; description: string }>;
@@ -116,6 +127,19 @@ export const translations: Record<Language, Translation> = {
       hoursTitle: "Horaires flexibles",
       hoursCta: "Voir les horaires",
     },
+    emergency: {
+      label: "Service d'urgence",
+      title: "Urgences dentaires",
+      subtitle:
+        "Une prise en charge rapide en cas de douleur ou de traumatisme.",
+      description:
+        "Appelez notre ligne prioritaire : une équipe vous oriente et vous propose un créneau rapide.",
+      phoneLabel: "Ligne d'urgence",
+      ctaCall: "Appeler maintenant",
+      ctaBook: "Réserver un rendez-vous",
+      badge: "Réponse rapide",
+      imageAlt: "Service d'urgence dentaire",
+    },
     heroHighlights: [
       {
         title: "Hygiène maîtrisée",
@@ -137,6 +161,11 @@ export const translations: Record<Language, Translation> = {
     },
     services: [
       {
+        title: "Urgences Dentaires",
+        description:
+          "Prise en charge rapide des urgences et extractions dentaires",
+      },
+      {
         title: "Soins Conservateurs",
         description:
           "Caries, détartrage, soins de routine pour préserver vos dents naturelles",
@@ -153,11 +182,6 @@ export const translations: Record<Language, Translation> = {
       {
         title: "Orthodontie",
         description: "Alignement et correction dentaire, gouttières dentaires",
-      },
-      {
-        title: "Urgences Dentaires",
-        description:
-          "Prise en charge rapide des urgences et extractions dentaires",
       },
       {
         title: "Blanchiment des dents",
@@ -375,6 +399,18 @@ export const translations: Record<Language, Translation> = {
       newPatients: "New patients welcome",
       hoursTitle: "Flexible hours",
       hoursCta: "See hours",
+    },
+    emergency: {
+      label: "Emergency service",
+      title: "Dental emergencies",
+      subtitle: "Fast care for pain or dental trauma.",
+      description:
+        "Call our priority line and we'll guide you to the earliest available slot.",
+      phoneLabel: "Emergency line",
+      ctaCall: "Call now",
+      ctaBook: "Book an appointment",
+      badge: "Rapid response",
+      imageAlt: "Dental emergency service",
     },
     heroHighlights: [
       {
@@ -628,6 +664,17 @@ export const translations: Record<Language, Translation> = {
       newPatients: "نرحّب بالمرضى الجدد",
       hoursTitle: "مواعيد مرنة",
       hoursCta: "عرض المواعيد",
+    },
+    emergency: {
+      label: "خدمة الطوارئ",
+      title: "طوارئ الأسنان",
+      subtitle: "استجابة سريعة في حالات الألم أو الإصابات السنية.",
+      description: "اتصل بخط الطوارئ وسيقوم فريقنا بتوجيهك لأقرب موعد متاح.",
+      phoneLabel: "خط الطوارئ",
+      ctaCall: "اتصل الآن",
+      ctaBook: "احجز موعداً",
+      badge: "استجابة سريعة",
+      imageAlt: "خدمة طوارئ الأسنان",
     },
     heroHighlights: [
       {
@@ -885,6 +932,18 @@ export const translations: Record<Language, Translation> = {
       newPatients: "Neue Patienten willkommen",
       hoursTitle: "Flexible Öffnungszeiten",
       hoursCta: "Öffnungszeiten ansehen",
+    },
+    emergency: {
+      label: "Notdienst",
+      title: "Zahnärztlicher Notfall",
+      subtitle: "Schnelle Hilfe bei Schmerzen oder Zahntrauma.",
+      description:
+        "Rufen Sie unsere Prioritätsnummer an – wir vermitteln den schnellsten Termin.",
+      phoneLabel: "Notfallnummer",
+      ctaCall: "Jetzt anrufen",
+      ctaBook: "Termin buchen",
+      badge: "Schnelle Hilfe",
+      imageAlt: "Zahnnotfall-Service",
     },
     heroHighlights: [
       {
@@ -1147,6 +1206,18 @@ export const translations: Record<Language, Translation> = {
       newPatients: "Nuevos pacientes bienvenidos",
       hoursTitle: "Horarios flexibles",
       hoursCta: "Ver horarios",
+    },
+    emergency: {
+      label: "Servicio de urgencias",
+      title: "Urgencias dentales",
+      subtitle: "Atención rápida ante dolor o traumatismo dental.",
+      description:
+        "Llama a nuestra línea prioritaria y te orientaremos con el primer hueco disponible.",
+      phoneLabel: "Línea de urgencias",
+      ctaCall: "Llamar ahora",
+      ctaBook: "Reservar cita",
+      badge: "Respuesta rápida",
+      imageAlt: "Servicio de urgencias dentales",
     },
     heroHighlights: [
       {
@@ -1411,6 +1482,18 @@ export const translations: Record<Language, Translation> = {
       hoursTitle: "Orari flessibili",
       hoursCta: "Vedi orari",
     },
+    emergency: {
+      label: "Servizio d'emergenza",
+      title: "Urgenze dentali",
+      subtitle: "Assistenza rapida in caso di dolore o trauma dentale.",
+      description:
+        "Chiama la nostra linea prioritaria: ti guideremo verso il primo appuntamento disponibile.",
+      phoneLabel: "Linea di emergenza",
+      ctaCall: "Chiama ora",
+      ctaBook: "Prenota una visita",
+      badge: "Risposta rapida",
+      imageAlt: "Servizio di emergenza dentale",
+    },
     heroHighlights: [
       {
         title: "Igiene rigorosa",
@@ -1673,6 +1756,17 @@ export const translations: Record<Language, Translation> = {
       hoursTitle: "灵活的营业时间",
       hoursCta: "查看时间",
     },
+    emergency: {
+      label: "急诊服务",
+      title: "牙科急诊",
+      subtitle: "疼痛或牙外伤可快速处理。",
+      description: "拨打优先热线，我们会安排最近的可用时段。",
+      phoneLabel: "急诊热线",
+      ctaCall: "立即致电",
+      ctaBook: "预约就诊",
+      badge: "快速响应",
+      imageAlt: "牙科急诊服务",
+    },
     heroHighlights: [
       {
         title: "严格卫生",
@@ -1891,7 +1985,7 @@ export const translations: Record<Language, Translation> = {
   },
 };
 
-export const defaultLanguage: Language = "fr";
+export const defaultLanguage: Language = "en";
 
 export const isSupportedLanguage = (value: string): value is Language =>
   languageOptions.some((option) => option.code === value);
