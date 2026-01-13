@@ -121,6 +121,10 @@ All colors MUST be HSL.
   .animate-float {
     animation: float-slow 8s ease-in-out infinite;
   }
+
+  .animate-emergency-drop {
+    animation: emergency-drop 0.9s ease-out both;
+  }
 }
 
 @keyframes fade-up {
@@ -150,5 +154,31 @@ All colors MUST be HSL.
   }
   50% {
     transform: translateY(-12px);
+  }
+}
+
+@keyframes emergency-drop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, var(--emergency-rise, 100%), 0) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, -6px, 0) scale(1);
+  }
+  75% {
+    transform: translate3d(0, 2px, 0) scale(1);
+  }
+  82% {
+    transform: translate3d(-3px, 0, 0);
+  }
+  88% {
+    transform: translate3d(3px, 0, 0);
+  }
+  94% {
+    transform: translate3d(-2px, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
   }
 }

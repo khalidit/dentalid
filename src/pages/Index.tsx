@@ -52,7 +52,9 @@ const Index = () => {
   };
 
   const textAlignClass = isRtl ? "text-right" : "text-left";
-  const emergencySideClass = "-left-6 sm:-left-6 lg:-left-4";
+  const emergencySideClass = isRtl
+    ? "-right-2 sm:-right-3 lg:-right-6"
+    : "-left-2 sm:-left-3 lg:-left-6";
 
   const heroHighlightIcons = [
     <ShieldCheck className="h-5 w-5 text-emerald-600" />,
@@ -374,19 +376,21 @@ const Index = () => {
 
             <div className="relative order-1 lg:order-2">
               <div className="absolute -top-6 -left-6 h-24 w-24 rounded-3xl bg-white/80 shadow-lg backdrop-blur animate-float" />
-              <button
-                type="button"
-                onClick={() => setIsEmergencyOpen(true)}
-                aria-haspopup="dialog"
-                aria-label={t.emergency.title}
-                className={`group absolute -top-4 z-20 w-36 sm:-top-5 sm:w-40 md:-top-6 md:w-44 lg:-top-7 lg:w-56 xl:w-60 ${emergencySideClass} isolate focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200/80`}
-              >
-                <img
-                  src="/images/services/urgence.png"
-                  alt={t.emergency.imageAlt}
-                  className="w-full object-contain aspect-[4/3] drop-shadow-[0_18px_35px_rgba(15,23,42,0.35)] transition-transform duration-500 lg:group-hover:scale-[1.05]"
-                />
-              </button>
+              <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden lg:overflow-visible animate-emergency-drop [--emergency-rise:100%]">
+                <button
+                  type="button"
+                  onClick={() => setIsEmergencyOpen(true)}
+                  aria-haspopup="dialog"
+                  aria-label={t.emergency.title}
+                  className={`group pointer-events-auto absolute top-16 z-10 w-36 sm:top-14 sm:w-40 md:top-6 md:w-44 lg:-top-6 lg:w-56 xl:w-60 ${emergencySideClass} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200/80`}
+                >
+                  <img
+                    src="/images/services/urgence.png"
+                    alt={t.emergency.imageAlt}
+                    className="w-full object-contain aspect-[4/3] drop-shadow-[0_18px_35px_rgba(15,23,42,0.35)] transition-transform duration-500 lg:group-hover:scale-[1.05]"
+                  />
+                </button>
+              </div>
               <div className="relative overflow-hidden rounded-3xl border border-white/70 shadow-[0_30px_80px_-40px_rgba(16,185,129,0.55)]">
                 <img
                   src="images/women_profil.png"
